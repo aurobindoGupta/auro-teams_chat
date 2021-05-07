@@ -32,6 +32,7 @@ const LoginForm = () =>{
     }
     return(
         <div className="wrapper">
+            
             <div classname="form">
                 <h1 className="title" >Chat Application </h1>
                 <form onSubmit={ handleSubmit}>
@@ -46,12 +47,17 @@ const LoginForm = () =>{
                             <span>Log In</span>
                         </button>
                     </div>
+                    <div  style={{textAlign:"center"}} className="credentials">
+                            <p>Test user- test_1 ; Password- 0000</p>
+                            <p>Test user- test_2 ; Password- 0000</p>
+                    </div>
 
-                    <h2 classNmae="error" > { error } </h2>
+                    <h2 className="error" > { error } </h2>
 
                 </form>
 
             </div>
+            
         </div>
     );
 
