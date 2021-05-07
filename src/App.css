@@ -84,7 +84,7 @@
   }
   
   .chat-title {
-    color: #184b48;
+    color: #1c5754;
     font-weight: 800;
     font-size: 24px;
   }
@@ -180,7 +180,7 @@
   
   .image-button {
     cursor: pointer;
-    padding: 0px 12px;
+    padding: 0px 12px 0px 70px;
     height: 100%;
   }
   
@@ -188,8 +188,9 @@
     height: 42px;
     background-color: white;
     border: 1px solid white;
-    padding: 0px 18px;
+    padding: 0px 15px 0px 0px;
     cursor: pointer;
+    text-align: end;
   }
   
   .send-icon {

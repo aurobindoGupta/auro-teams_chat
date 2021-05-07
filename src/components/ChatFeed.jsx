@@ -1,6 +1,8 @@
 import MessageForm from './MessageForm';
 import MyMessage from './MyMessage';
 import TheirMessage from './TheirMessage';
+import axios from 'axios';
+import LoginForm from './LoginForm';
 
 const Chatfeed = (props) => {
 
@@ -51,6 +53,23 @@ const Chatfeed = (props) => {
                 )
             })
         }
+        const handleLogout= async (e)=>{
+           const username = LoginForm.userName;
+            const password = LoginForm.password;
+            e.preventDefault();
+
+            const authObject = { 'Project-ID': "74869fe0-0cb7-4eff-bfb7-b47888babb20", 'User-Name': username, 
+                                    'User-Secret': password };
+            
+                                    
+                             
+                localStorage.removeItem ('username', username);
+                localStorage.removeItem('password', password);
+    
+                window.location.reload();
+    
+            
+        }
         
 
         if(!chat) return 'Loading...';
@@ -61,6 +80,7 @@ const Chatfeed = (props) => {
                 <div className="chat-title-container">
                     <div className="chat-title">
                         {chat.title}
+                        <button style={{marginLeft:"20px"}} onClick={handleLogout}>Logout</button>
                     </div>
                     <div className="chat-subtitle">
                         {chat.people.map((person) => ` ${person.person.username}`)}
@@ -71,7 +91,9 @@ const Chatfeed = (props) => {
                 <div className="message-form-container">
                     <MessageForm {...props} chatId={activeChat} />
                 </div>
+                
             </div>
+            
         );
 }
 
