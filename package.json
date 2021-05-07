@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "chat": "^1.0.8",
     "engine": "^1.0.0",
+    "netlify-cli": "^3.28.0",
     "react": "^17.0.2",
     "react-chat": "*",
     "react-chat-engine": "^1.8.11",
