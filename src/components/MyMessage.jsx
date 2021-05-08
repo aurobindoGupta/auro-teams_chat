@@ -1,4 +1,7 @@
+
+
 const MyMessage = ({ message }) => {
+    
 
     if(message?.attachments?.length > 0){
         return(
@@ -12,8 +15,9 @@ const MyMessage = ({ message }) => {
     }
     return(
 
-        <div className="message " style = {{float: 'right' , marginRight: '18px', color: 'white', backgroundColor: '#3B2A50'}}>
+        <div className="message " style = {{float: 'right' , marginRight: '18px', color: 'white', backgroundColor: '#065F46'}}>
            {message.text}
+           
         </div>
     );
 }

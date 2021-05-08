@@ -1,8 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+
 import MessageForm from './MessageForm';
+
 import MyMessage from './MyMessage';
 import TheirMessage from './TheirMessage';
 import axios from 'axios';
 import LoginForm from './LoginForm';
+
+
 
 const Chatfeed = (props) => {
 
@@ -10,18 +15,33 @@ const Chatfeed = (props) => {
 
         const chat = chats && chats[activeChat];
 
+        const [typer,setTyper]= useState(null);
+
+        
+
+       
+
         const renderReadReceipts = (message, isMyMessage) =>{
           return( chat.people.map((person, index ) => person.last_read === message.id && (
                 <div 
+
                     key = {`read_${index}`}
                     className="read-receipt"
                     style={{ 
                                 float: isMyMessage ?'right':'left',
                                 backgroundImage: person.person.avatar && ` url(${person.person.avatar})`,
                             }}
+                         
+                                 
                 />
+                
             ))
-          )}; 
+          )};
+          const messageEndRef = useRef(null);
+   
+             useEffect(() => {
+                                messageEndRef.current && messageEndRef.current?.scrollIntoView({behavior:"smooth"});
+                            },[messages]); 
 
         const renderMessages = () => {
 
@@ -35,7 +55,7 @@ const Chatfeed = (props) => {
 
                 return(
 
-                    <div key = {`msg_${index}`} style = {{width :'100%' }}>
+                    <div key = {`msg_${index}`} style = {{width :'100%' }}  >
                         <div className="message-block" >
                             {
 
@@ -44,11 +64,15 @@ const Chatfeed = (props) => {
 
 
                             }
+                             
+                            
 
                         </div>
-                        <div className="read-receipts" style={{ marginRight: isMyMessage? '18px' : '0px', marginLeft: isMyMessage? '0px' : '68px' }}> 
+                        <div  className="read-receipts" style={{ marginRight: isMyMessage? '18px' : '0px', marginLeft: isMyMessage? '0px' : '68px' }} > 
                                 {renderReadReceipts( message, isMyMessage )}
+                                
                         </div>
+                        
                     </div>
                 )
             })
@@ -76,20 +100,24 @@ const Chatfeed = (props) => {
 
         return(
 
-            <div className="chat-feed"> 
+            <div className="chat-feed">
+               
                 <div className="chat-title-container">
                     <div className="chat-title">
                         {chat.title}
-                        <button style={{marginLeft:"20px"}} onClick={handleLogout}>Logout</button>
+                        <button style={{marginLeft:"20px", backgroundColor:"#FCA5A5", fontWeight:"bold"}} onClick={handleLogout}>Logout</button>
                     </div>
-                    <div className="chat-subtitle">
+                    <div className="chat-subtitle" >
                         {chat.people.map((person) => ` ${person.person.username}`)}
                     </div>
                 </div>
                 {renderMessages()}
-                <div style={{height: '100px' }}/>
-                <div className="message-form-container">
-                    <MessageForm {...props} chatId={activeChat} />
+                
+                <div style={{height: '100px' }} ref= {messageEndRef}>
+                    {typer? `${typer} typing...`:null}
+                </div>
+                <div className="message-form-container" >
+                    <MessageForm {...props} chatId={activeChat}  ref= {messageEndRef} typer={typer} setTyper={setTyper}/>
                 </div>
                 
             </div>
