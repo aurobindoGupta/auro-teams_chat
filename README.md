@@ -1,3 +1,11 @@
+*About
+this is a group chat app made using react js, HTML, CSS.
+this app was made using chatengine.io API.
+the link to the deployed app is - https://auro-teams.netlify.app/ 
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
